@@ -1,0 +1,211 @@
+/* Rota dos Ventos — homepage prototype. Shared stylesheet for all language versions. */
+:root {
+  --rdv-navy: #07111f;
+  --rdv-navy-soft: #0d1b2d;
+  --rdv-blue: #1457c5;
+  --rdv-yellow: #f6d51b;
+  --rdv-white: #f7f8fb;
+  --rdv-muted: #a8b2c2;
+  --rdv-ink: #111a27;
+  --rdv-paper: #f2f3f1;
+  --rdv-line: rgba(255,255,255,.16);
+  --rdv-container: 1220px;
+  --rdv-radius: 3px;
+}
+
+/* Scope the homepage styles so existing inner pages remain unaffected. */
+.rdv-home { margin: 0; background: var(--rdv-navy); color: var(--rdv-white); font-family: Inter, "Segoe UI", Arial, sans-serif; line-height: 1.5; }
+.rdv-home *, .rdv-home *::before, .rdv-home *::after { box-sizing: border-box; }
+.rdv-home img { display: block; max-width: 100%; }
+.rdv-home a { color: inherit; text-decoration: none; }
+.rdv-home button, .rdv-home a { -webkit-tap-highlight-color: transparent; }
+.rdv-home a:focus-visible, .rdv-home button:focus-visible { outline: 3px solid var(--rdv-yellow); outline-offset: 4px; }
+.rdv-container { width: min(var(--rdv-container), calc(100% - 48px)); margin-inline: auto; }
+.rdv-skip-link { position: absolute; z-index: 100; top: 8px; left: 8px; padding: 10px 14px; background: var(--rdv-yellow); color: var(--rdv-navy) !important; transform: translateY(-150%); }
+.rdv-skip-link:focus { transform: translateY(0); }
+
+.rdv-header { position: absolute; z-index: 30; inset: 0 0 auto; border-bottom: 1px solid rgba(255,255,255,.16); }
+.rdv-header-inner { width: min(1440px, calc(100% - 56px)); min-height: 92px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+.rdv-brand { display: inline-flex; align-items: center; gap: 10px; min-width: max-content; }
+.rdv-brand-mark { display: inline-grid; width: 42px; height: 42px; color: var(--rdv-yellow); }
+.rdv-brand-mark svg { width: 100%; height: 100%; }
+.rdv-brand-name { color: white; font-size: 15px; font-weight: 850; letter-spacing: .06em; }
+.rdv-brand-name b { color: var(--rdv-yellow); font-weight: 850; }
+.rdv-nav { display: flex; align-items: center; justify-content: center; gap: clamp(18px, 3vw, 40px); }
+.rdv-nav a { color: rgba(255,255,255,.82); font-size: 12px; font-weight: 650; transition: color .2s ease; }
+.rdv-nav a:hover { color: var(--rdv-yellow); }
+.rdv-header-actions { display: flex; align-items: center; gap: 22px; }
+.rdv-language { display: flex; align-items: center; gap: 3px; padding: 4px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; }
+.rdv-language a, .rdv-language button { display: grid; place-items: center; min-width: 31px; min-height: 30px; padding: 0 6px; border: 0; border-radius: 999px; background: transparent; color: rgba(255,255,255,.68); font: inherit; font-size: 10px; font-weight: 800; cursor: pointer; }
+.rdv-language [data-idioma="pt"] { background: var(--rdv-yellow); color: var(--rdv-navy); }
+.rdv-language a:hover { color: white; }
+.rdv-button { display: inline-flex; align-items: center; justify-content: center; gap: 22px; min-height: 54px; padding: 0 22px; border: 1px solid var(--rdv-yellow); border-radius: var(--rdv-radius); background: var(--rdv-yellow); color: var(--rdv-navy) !important; font-size: 12px; font-weight: 850; letter-spacing: .01em; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.rdv-button span { font-size: 18px; line-height: 1; }
+.rdv-button:hover { background: transparent; color: var(--rdv-yellow) !important; transform: translateY(-2px); }
+.rdv-button-small { min-height: 42px; padding-inline: 16px; gap: 12px; font-size: 11px; }
+.rdv-button-small span { font-size: 15px; }
+
+.rdv-hero { position: relative; display: flex; align-items: center; min-height: min(790px, 100svh); min-height: clamp(650px, 90svh, 850px); overflow: hidden; isolation: isolate; background: #081324; }
+.rdv-hero-image { position: absolute; z-index: -3; inset: 0; background-image: url("https://cdn.getyourguide.com/image/format%3Dauto%2Cfit%3Dcrop%2Cgravity%3Dcenter%2Cquality%3D60%2Cwidth%3D1600%2Cheight%3D1100%2Cdpr%3D2/tour_img/c4944404fc36e703c66757d1c84e797d4741c669f4bded21dbdf6a8cc377e1c5.jpg"); background-size: cover; background-position: center 44%; transform: scale(1.015); animation: rdv-hero-reveal 1s ease-out both; }
+.rdv-hero-shade { position: absolute; z-index: -2; inset: 0; background: linear-gradient(90deg, rgba(4,12,24,.95) 0%, rgba(4,12,24,.82) 34%, rgba(4,12,24,.25) 70%, rgba(4,12,24,.06) 100%), linear-gradient(0deg, rgba(4,12,24,.62) 0%, transparent 38%, rgba(4,12,24,.18) 100%); }
+.rdv-hero-content { position: relative; z-index: 1; padding-top: 115px; padding-bottom: 72px; }
+.rdv-eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 24px; color: var(--rdv-yellow); font-size: 10px; font-weight: 850; letter-spacing: .19em; }
+.rdv-eyebrow > span { width: 23px; height: 2px; background: currentColor; }
+.rdv-hero h1, .rdv-section-heading h2, .rdv-intro h2, .rdv-about h2, .rdv-process h2, .rdv-final-cta h2 { margin: 0; font-size: clamp(52px, 7.1vw, 100px); font-weight: 850; letter-spacing: -.075em; line-height: .94; }
+.rdv-hero h1 em, .rdv-section-heading h2 em, .rdv-intro h2 em, .rdv-about h2 em, .rdv-process h2 em, .rdv-final-cta h2 em { color: var(--rdv-yellow); font-style: normal; }
+.rdv-hero-copy { max-width: 445px; margin: 27px 0 30px; color: rgba(255,255,255,.82); font-size: 16px; line-height: 1.8; }
+.rdv-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 26px; }
+.rdv-text-link { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 750; }
+.rdv-text-link span { color: var(--rdv-yellow); font-size: 19px; transition: transform .2s ease; }
+.rdv-text-link:hover span { transform: translateX(4px); }
+.rdv-hero-note { display: flex; align-items: center; gap: 12px; margin-top: 66px; color: rgba(255,255,255,.78); font-size: 9px; font-weight: 800; letter-spacing: .2em; }
+.rdv-note-line { width: 46px; height: 1px; background: var(--rdv-yellow); }
+.rdv-hero-coordinate { position: absolute; right: 28px; bottom: 35px; color: rgba(255,255,255,.8); font-size: 9px; font-weight: 750; letter-spacing: .18em; line-height: 1.9; text-align: right; }
+.rdv-scroll-cue { position: absolute; left: 50%; bottom: 26px; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.7) !important; font-size: 8px; font-weight: 800; letter-spacing: .22em; transform: translateX(-50%); }
+.rdv-scroll-cue span { width: 26px; height: 1px; background: var(--rdv-yellow); }
+@keyframes rdv-hero-reveal { from { opacity: .4; transform: scale(1.06); } to { opacity: 1; transform: scale(1.015); } }
+
+.rdv-intro { padding-block: 105px 112px; color: var(--rdv-white); }
+.rdv-intro-kicker { display: flex; align-items: center; gap: 13px; margin-bottom: 32px; color: #7e8a9c; font-size: 9px; font-weight: 850; letter-spacing: .19em; }
+.rdv-intro-kicker > span:first-child { color: var(--rdv-yellow); font-size: 12px; letter-spacing: .04em; }
+.rdv-kicker-rule { width: 34px; height: 1px; background: #657185; }
+.rdv-intro-grid { display: grid; grid-template-columns: 1.05fr .75fr; align-items: end; gap: clamp(38px, 8vw, 120px); }
+.rdv-intro h2, .rdv-process h2 { font-size: clamp(43px, 5.3vw, 72px); }
+.rdv-intro-copy { max-width: 490px; padding-bottom: 3px; color: #b8c0cd; font-size: 14px; line-height: 1.9; }
+.rdv-intro-copy p { margin: 0 0 14px; }
+.rdv-intro-copy p:last-child { margin-bottom: 0; }
+
+.rdv-experiences { padding: 98px 0 112px; background: var(--rdv-paper); color: var(--rdv-ink); }
+.rdv-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 42px; margin-bottom: 46px; }
+.rdv-eyebrow-dark { color: #234f9d; }
+.rdv-section-heading h2 { font-size: clamp(43px, 5.2vw, 72px); }
+.rdv-section-heading h2 em { color: #1a58bd; }
+.rdv-section-heading > p { max-width: 300px; margin: 0 0 7px; color: #687280; font-size: 13px; line-height: 1.8; }
+.rdv-experience-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.rdv-experience-card { min-width: 0; background: white; }
+.rdv-card-image { position: relative; display: block; aspect-ratio: 1.14 / 1; overflow: hidden; background: #172941; }
+.rdv-card-image::after { position: absolute; inset: 35% 0 0; background: linear-gradient(0deg, rgba(5,14,27,.58), transparent); content: ""; pointer-events: none; }
+.rdv-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+.rdv-experience-card:hover .rdv-card-image img { transform: scale(1.045); }
+.rdv-card-number { position: absolute; z-index: 1; left: 22px; bottom: 20px; color: white; font-size: 10px; font-weight: 800; letter-spacing: .16em; }
+.rdv-card-arrow { position: absolute; z-index: 1; right: 20px; bottom: 16px; display: grid; place-items: center; width: 39px; height: 39px; border-radius: 50%; background: var(--rdv-yellow); color: var(--rdv-navy); font-size: 19px; transition: transform .2s ease; }
+.rdv-experience-card:hover .rdv-card-arrow { transform: rotate(45deg); }
+.rdv-card-content { padding: 29px 30px 31px; }
+.rdv-card-label { margin: 0 0 9px; color: #2458a8; font-size: 9px; font-weight: 850; letter-spacing: .15em; }
+.rdv-card-content h3 { margin: 0 0 11px; color: var(--rdv-ink); font-size: clamp(27px, 3vw, 39px); font-weight: 850; letter-spacing: -.05em; line-height: 1.05; }
+.rdv-card-content > p:not(.rdv-card-label) { max-width: 430px; margin: 0 0 23px; color: #67717e; font-size: 13px; line-height: 1.8; }
+.rdv-card-link { display: inline-flex; align-items: center; gap: 13px; color: #123e81 !important; font-size: 11px; font-weight: 850; }
+.rdv-card-link span { font-size: 18px; transition: transform .2s ease; }
+.rdv-card-link:hover span { transform: translateX(4px); }
+
+.rdv-about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); background: #0d1a2b; }
+.rdv-about-visual { position: relative; min-height: 650px; overflow: hidden; background: #1b2d42; }
+.rdv-about-visual > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.rdv-about-visual::after { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(6,15,27,.35), transparent 65%); content: ""; }
+.rdv-about-stamp { position: absolute; z-index: 1; right: 36px; bottom: 36px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 124px; height: 124px; border: 1px solid rgba(246,213,27,.8); border-radius: 50%; background: rgba(7,17,31,.78); color: white; font-size: 10px; font-weight: 850; letter-spacing: .14em; line-height: 1.7; }
+.rdv-about-stamp b { color: var(--rdv-yellow); }
+.rdv-about-stamp svg { width: 25px; margin-top: 5px; color: var(--rdv-yellow); }
+.rdv-about-content { align-self: center; max-width: 680px; padding: 82px clamp(35px, 7vw, 110px); }
+.rdv-intro-kicker-light { color: #9ba8bb; }
+.rdv-about h2 { margin-bottom: 25px; font-size: clamp(43px, 4.8vw, 65px); }
+.rdv-about-content > p:not(.rdv-eyebrow) { max-width: 470px; margin: 0 0 16px; color: #b6c0ce; font-size: 13px; line-height: 1.95; }
+.rdv-about-content .rdv-eyebrow { margin-bottom: 17px; }
+.rdv-button-outline { margin-top: 18px; border-color: rgba(246,213,27,.65); background: transparent; color: var(--rdv-yellow) !important; }
+.rdv-button-outline:hover { background: var(--rdv-yellow); color: var(--rdv-navy) !important; }
+
+.rdv-process { display: grid; grid-template-columns: .8fr 1fr; gap: clamp(40px, 8vw, 120px); padding-block: 110px 120px; }
+.rdv-process h2 { margin-bottom: 22px; }
+.rdv-process-heading > p { max-width: 400px; margin: 0; color: #aeb8c7; font-size: 13px; line-height: 1.9; }
+.rdv-steps { border-top: 1px solid var(--rdv-line); }
+.rdv-step { display: grid; grid-template-columns: 52px 1fr; gap: 20px; padding: 25px 0; border-bottom: 1px solid var(--rdv-line); }
+.rdv-step-index { padding-top: 2px; color: var(--rdv-yellow); font-size: 11px; font-weight: 850; letter-spacing: .08em; }
+.rdv-step h3 { margin: 0 0 7px; font-size: 16px; font-weight: 750; letter-spacing: -.02em; }
+.rdv-step p { max-width: 480px; margin: 0; color: #aab5c4; font-size: 12px; line-height: 1.8; }
+
+.rdv-final-cta { position: relative; overflow: hidden; isolation: isolate; padding-block: 108px 112px; background: #0b1a2c; text-align: center; }
+.rdv-final-bg { position: absolute; z-index: -2; inset: 0; background: url("https://cdn.getyourguide.com/image/format%3Dauto%2Cfit%3Dcrop%2Cgravity%3Dcenter%2Cquality%3D60%2Cwidth%3D1600%2Cheight%3D1100%2Cdpr%3D2/tour_img/c4944404fc36e703c66757d1c84e797d4741c669f4bded21dbdf6a8cc377e1c5.jpg") center 60% / cover no-repeat; opacity: .23; }
+.rdv-final-cta::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(7,17,31,.88), rgba(7,17,31,.72), rgba(7,17,31,.9)); content: ""; }
+.rdv-final-content { display: flex; flex-direction: column; align-items: center; }
+.rdv-final-cta .rdv-eyebrow { justify-content: center; }
+.rdv-final-cta h2 { font-size: clamp(44px, 6.5vw, 82px); }
+.rdv-final-cta > .rdv-final-content > p:not(.rdv-eyebrow) { max-width: 460px; margin: 22px 0 26px; color: #c2cad5; font-size: 14px; line-height: 1.8; }
+
+.rdv-footer { background: #050c16; }
+.rdv-footer-main { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 38px; }
+.rdv-brand-footer .rdv-brand-mark { width: 36px; height: 36px; }
+.rdv-footer-main > p { margin: 0; color: #b1bbc9; font-size: 12px; }
+.rdv-footer-instagram { color: var(--rdv-yellow) !important; font-size: 12px; font-weight: 750; }
+.rdv-footer-instagram span { margin-left: 6px; font-size: 16px; }
+.rdv-footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-block: 16px 22px; border-top: 1px solid rgba(255,255,255,.1); color: #7e8a9b; font-size: 10px; }
+.rdv-footer-bottom a { color: #b5bfcc !important; }
+
+@media (min-width: 1500px) { .rdv-hero { min-height: 850px; } }
+@media (max-width: 1020px) {
+  .rdv-header-inner { width: min(100% - 36px, 900px); gap: 18px; }
+  .rdv-nav { gap: 18px; }
+  .rdv-header-actions { gap: 12px; }
+  .rdv-header-actions > .rdv-button { display: none; }
+  .rdv-hero-shade { background: linear-gradient(90deg, rgba(4,12,24,.94) 0%, rgba(4,12,24,.75) 45%, rgba(4,12,24,.2) 100%), linear-gradient(0deg, rgba(4,12,24,.65), transparent 60%); }
+  .rdv-about-visual { min-height: 590px; }
+  .rdv-about-content { padding-inline: 42px; }
+  .rdv-process { grid-template-columns: .9fr 1fr; gap: 44px; }
+}
+@media (max-width: 720px) {
+  .rdv-container { width: min(100% - 38px, var(--rdv-container)); }
+  .rdv-header { background: rgba(5,13,25,.25); backdrop-filter: blur(10px); }
+  .rdv-header-inner { width: calc(100% - 30px); min-height: 76px; gap: 10px; }
+  .rdv-brand { gap: 7px; }
+  .rdv-brand-mark { width: 34px; height: 34px; }
+  .rdv-brand-name { font-size: 11px; letter-spacing: .035em; }
+  .rdv-nav { display: none; }
+  .rdv-header-actions { margin-left: auto; }
+  .rdv-language { gap: 0; padding: 3px; }
+  .rdv-language a, .rdv-language button { min-width: 28px; min-height: 28px; font-size: 9px; }
+  .rdv-hero { min-height: 760px; min-height: 94svh; align-items: end; }
+  .rdv-hero-image { background-position: 57% center; }
+  .rdv-hero-shade { background: linear-gradient(0deg, rgba(4,12,24,.96) 0%, rgba(4,12,24,.78) 48%, rgba(4,12,24,.18) 100%), linear-gradient(90deg, rgba(4,12,24,.3), transparent); }
+  .rdv-hero-content { padding-top: 150px; padding-bottom: 120px; }
+  .rdv-eyebrow { gap: 8px; font-size: 8px; letter-spacing: .14em; }
+  .rdv-hero h1 { font-size: clamp(54px, 15vw, 80px); }
+  .rdv-hero-copy { max-width: 390px; margin: 22px 0 25px; font-size: 14px; line-height: 1.75; }
+  .rdv-hero-actions { align-items: flex-start; gap: 18px; flex-direction: column; }
+  .rdv-hero-note { margin-top: 36px; font-size: 8px; }
+  .rdv-hero-coordinate { right: 18px; bottom: 20px; font-size: 8px; }
+  .rdv-scroll-cue { display: none; }
+  .rdv-intro { padding-block: 72px 76px; }
+  .rdv-intro-kicker { gap: 9px; margin-bottom: 24px; font-size: 8px; letter-spacing: .13em; }
+  .rdv-kicker-rule { width: 22px; }
+  .rdv-intro-grid { grid-template-columns: 1fr; gap: 22px; }
+  .rdv-intro h2, .rdv-process h2 { font-size: clamp(43px, 12vw, 61px); }
+  .rdv-intro-copy { font-size: 13px; }
+  .rdv-experiences { padding-block: 72px 76px; }
+  .rdv-section-heading { display: block; margin-bottom: 30px; }
+  .rdv-section-heading h2 { font-size: clamp(43px, 12vw, 62px); }
+  .rdv-section-heading > p { margin-top: 18px; font-size: 13px; }
+  .rdv-experience-grid { grid-template-columns: 1fr; gap: 20px; }
+  .rdv-card-image { aspect-ratio: 1.12 / 1; }
+  .rdv-card-content { padding: 25px 22px 27px; }
+  .rdv-card-content h3 { font-size: 32px; }
+  .rdv-about { grid-template-columns: 1fr; }
+  .rdv-about-visual { min-height: 0; aspect-ratio: 1 / .92; }
+  .rdv-about-stamp { right: 20px; bottom: 20px; width: 96px; height: 96px; font-size: 8px; }
+  .rdv-about-stamp svg { width: 20px; }
+  .rdv-about-content { padding: 68px 22px 72px; }
+  .rdv-about h2 { font-size: clamp(42px, 11vw, 58px); }
+  .rdv-about-content > p:not(.rdv-eyebrow) { font-size: 13px; }
+  .rdv-process { grid-template-columns: 1fr; gap: 30px; padding-block: 76px 82px; }
+  .rdv-step { grid-template-columns: 35px 1fr; gap: 13px; padding-block: 22px; }
+  .rdv-step h3 { font-size: 15px; }
+  .rdv-step p { font-size: 12px; }
+  .rdv-final-cta { padding-block: 76px 80px; }
+  .rdv-final-cta h2 { font-size: clamp(43px, 11vw, 62px); }
+  .rdv-final-cta .rdv-eyebrow { max-width: 310px; line-height: 1.7; }
+  .rdv-final-cta > .rdv-final-content > p:not(.rdv-eyebrow) { font-size: 13px; }
+  .rdv-footer-main { flex-wrap: wrap; align-items: flex-start; padding-block: 30px; }
+  .rdv-footer-main > p { order: 3; width: 100%; }
+  .rdv-footer-bottom { display: grid; grid-template-columns: 1fr auto; font-size: 9px; }
+  .rdv-footer-bottom span:last-child { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rdv-home *, .rdv-home *::before, .rdv-home *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
